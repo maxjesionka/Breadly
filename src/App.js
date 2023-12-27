@@ -1,30 +1,38 @@
-import { useState } from 'react';
+import React from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Header from './components/Layout/Header';
-import Meals from './components/Meals/Meals';
-import Cart from './components/Cart/Cart';
-import CartProvider from './store/CartProvider';
+import RootLayout from "./components/pages/RootLayout";
+import MealInsights from "./components/Meals/MealItem/MealInsights";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    id: "root",
+    children: [
+      {
+        index: true,
+        element: <RootLayout />,
+      },
+      {
+        path: "meals",
+        element: <MealInsights />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
+  // const [cartIsShown, setCartIsShown] = useState(false);
 
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
+  // const showCartHandler = () => {
+  //   setCartIsShown(true);
+  // };
 
-  const hideCartHandler = () => {
-    setCartIsShown(false);
-  };
+  // const hideCartHandler = () => {
+  //   setCartIsShown(false);
+  // };
 
-  return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-    </CartProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
