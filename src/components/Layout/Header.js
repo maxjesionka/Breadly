@@ -1,20 +1,20 @@
-import { Fragment } from 'react';
+import HeaderCartButton from "./HeaderCartButton";
 
-import HeaderCartButton from './HeaderCartButton';
-import mealsImage from '../../assets/cross.jpg';
-import classes from './Header.module.css';
+import classes from "./Header.module.css";
+
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   return (
-    <Fragment>
+    <>
       <header className={classes.header}>
-        <h1>BakeryApp</h1>
+        <h1>
+          <Link to="/">BakeryApp</Link>
+        </h1>
         <HeaderCartButton onClick={props.onShowCart} />
+        {/* <MainNavigation/> */}
       </header>
-      <div className={classes['main-image']}>
-        <img src={mealsImage} alt='A table full of delicious food!' />
-      </div>
-    </Fragment>
+    </>
   );
 };
 
