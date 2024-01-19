@@ -18,6 +18,10 @@
   color: white;
 }
 
+.pageName:hover{
+  color:#2c0d00;
+}
+
 .main-image {
   width: 100%;
   height: 25rem;

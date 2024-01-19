@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom"
+import classes from './MainNavigation.module.css'
 
 const MainNavigation = () => {
     return(
         <nav>
-            <ul>
+            <ul className={classes.navigation}>
                 <li>
                     <NavLink to='/'>
                         Home
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/meals/m1'>
-                        Meal 1
+                    <NavLink to='/auth'>
+                        Account
                     </NavLink>
                 </li>
             </ul>

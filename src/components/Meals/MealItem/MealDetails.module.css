@@ -12,8 +12,38 @@
     background-color: white;
     display: flex;
     gap:25px;
+    justify-content: space-between;
   }
 
   .mealContainer img{
     border-radius: 14px;
+  }
+
+  .backBtn{
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: rgb(247, 200, 115);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    font-weight: bold;
+    float: right;
+    margin-top: 10px;
+  }
+
+.backBtn:hover{
+  background-color: rgb(247, 190, 84);;
+}
+
+  .backBtn a{
+    text-decoration: none;
+    color: white;
+  }
+
+  .productImg{
+    object-fit: cover;
   }

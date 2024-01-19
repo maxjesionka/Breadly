@@ -22,7 +22,7 @@ const MealItem = (props) => {
   return (
     <li className={classes.meal}>
       <div>
-        <Link to={`/meals/${props.id}`}>{props.name}</Link>
+        <Link to={`/meals/${props.id}`} className={classes.productLink}>{props.name}</Link>
         <div className={classes.description}>{props.description}</div>
         <div className={classes.price}>{price}</div>
       </div>

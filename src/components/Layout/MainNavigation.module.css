@@ -1,0 +1,14 @@
+.navigation{
+    display: flex;
+    gap: 30px;
+}
+.navigation li{
+    list-style: none;
+}
+
+.navigation li a{
+text-transform: uppercase;
+}
+.navigation li a:hover{
+   color: #2c0d00;
+}

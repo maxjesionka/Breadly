@@ -1,5 +1,5 @@
 import HeaderCartButton from "./HeaderCartButton";
-
+import MainNavigation from "./MainNavigation";
 import classes from "./Header.module.css";
 
 import { Link } from "react-router-dom";
@@ -9,10 +9,10 @@ const Header = (props) => {
     <>
       <header className={classes.header}>
         <h1>
-          <Link to="/">BakeryApp</Link>
+          <Link to="/" className={classes.pageName}>Breadly</Link>
         </h1>
+        <MainNavigation/>
         <HeaderCartButton onClick={props.onShowCart} />
-        {/* <MainNavigation/> */}
       </header>
     </>
   );

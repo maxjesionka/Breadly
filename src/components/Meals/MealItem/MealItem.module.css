@@ -13,6 +13,10 @@
   font-weight: bold;
 }
 
+.productLink:hover{
+  color: #633001;
+}
+
 .meal h3 {
   margin: 0 0 0.25rem 0;
 }
