@@ -1,0 +1,36 @@
+pip install fastapi[all]
+# pip install psycopg[binary]
+pip install psycopg2-binary
+pip install SQLAlchemy
+pip install passlib[bcrypt]
+pip install python-jose[cryptography]
+pip install alembic
+alembic init alembic
+pip install pytest
+
+uvicorn app.main:app --reload
+
+8:29 zwracanie tylko swoich postów/zamówień
+
+MY_DB_URL
+localhost:5432
+
+docker-compose -f docker-compose-dev.yml up -d
+
+to do list:
+
+Konta użytkownika (luźne propozycję)
+- numer telefonu {x}
+- imię nazwisko {x}
+Produkty (must have)
+- podział long/short description {x}
+- img (może być jakaś ścieżka no co kolwiek) {x}
+Produkty (luźne propozycję)
+
+- Jakiś system ocen gwiazdki albo coś na wzór ocen w postach {x}
+
+na dolew bedzie uzywany /products. do slidera zroobic products/best i tam mająbyc  tylko produkty z oceną 5/5
+i ten licznijk produktów do slidera musi buc zrobiony na podstawie products/best {X}
+
+po zrobieniu wszzsytjego zrobic  noey alembic revision {x}
+

@@ -10,6 +10,10 @@ html {
 
 body {
   margin: 0;
+  /* background-color: #3f3f3f; */
   background-color: #3f3f3f;
+/* opacity: 0.5; */
+background-image: linear-gradient(to right, #f7c873, #f7c873 5px, #e5e5f7 5px, #e5e5f7 );
+background-size: 10px 100%;
 }
 
