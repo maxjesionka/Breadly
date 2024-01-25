@@ -43,7 +43,7 @@ function App() {
             }
           />
           <Route path="auth" element={<AuthenticationPage setToken={setToken}/>} />
-          <Route path="meals" element={<MealInsights />} />
+          {/* <Route path="meals" element={<MealInsights />} /> */}
           <Route path="meals/:id" element={<MealDetails token={token}/>} />
         </Routes>
       </CartProvider>

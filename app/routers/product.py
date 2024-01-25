@@ -12,7 +12,7 @@ router = APIRouter(
 
 #pobieranie produktów
 @router.get("/", response_model= List[schemas.Product] )
-def get_products(db: Session = Depends(get_db), current_user:int = Depends(oauth2.get_current_user), limit: int = 10000, skip: int = 0, search: Optional[str]= ""):
+def get_products(db: Session = Depends(get_db), limit: int = 10000, skip: int = 0, search: Optional[str]= ""):
     
     products = db.query(models.Product).filter(models.Product.name.contains(search)).limit(limit).offset(skip).all()
 
@@ -21,7 +21,7 @@ def get_products(db: Session = Depends(get_db), current_user:int = Depends(oauth
 
 #pobieranie best produktów (best = 5 gwiazdek)
 @router.get("/best", response_model= Dict[str, Union[List[schemas.Product], int]])
-def get_products(db: Session = Depends(get_db), current_user:int = Depends(oauth2.get_current_user), limit: int = 10000, skip: int = 0, search: Optional[str]= ""):
+def get_products(db: Session = Depends(get_db), limit: int = 10000, skip: int = 0, search: Optional[str]= ""):
     
     # Zapytanie wybierające produkty o polu "stars" równe 5
     products = db.query(models.Product).filter(models.Product.name.contains(search), models.Product.stars == 5).limit(limit).offset(skip).all()
@@ -37,7 +37,7 @@ def get_products(db: Session = Depends(get_db), current_user:int = Depends(oauth
 
 #pobieranie produktów po id
 @router.get("/{id}", response_model=schemas.Product)
-def get_product(id: int, db: Session = Depends(get_db), current_user:int = Depends(oauth2.get_current_user)):
+def get_product(id: int, db: Session = Depends(get_db)):
 
     product = db.query(models.Product).filter(models.Product.id == id).first()
 

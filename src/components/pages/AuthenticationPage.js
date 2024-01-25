@@ -2,32 +2,46 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./AuthenticationPage.module.css";
 import PropTypes from "prop-types";
+import { jwtDecode } from "jwt-decode";
 
 async function loginUser(credentials) {
-  return fetch("http://localhost:8080/auth", {
+  const params = new URLSearchParams();
+  params.append("username", credentials.username);
+  params.append("password", credentials.password);
+
+  return fetch("http://localhost:8000/login/", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: JSON.stringify(credentials),
+    body: params.toString(),
   }).then((data) => data.json());
 }
 
 async function registerUser(credentials) {
-  return fetch("http://localhost:8080/register", {
+  return fetch("http://localhost:8000/users/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
-  }).then((data) => data.json());
+  })
+    .then((data) => {
+      console.log("Server Response:", data);
+      return data.json();
+    })
+    .catch((error) => {
+      console.error("Error during registration:", error);
+      throw error;
+    });
 }
-
-// ... (import statements remain unchanged)
 
 const AuthenticationPage = ({ setToken }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [telephone, setTelephone] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -43,6 +57,9 @@ const AuthenticationPage = ({ setToken }) => {
       setToken(existingToken);
       setUserName(existingUsername);
       setIsLoggedIn(true);
+      const decodedToken = jwtDecode(existingToken);
+      const userId = decodedToken.user_id;
+      console.log("User ID:", userId);
     }
   }, [setToken]);
 
@@ -52,23 +69,25 @@ const AuthenticationPage = ({ setToken }) => {
       setLoading(true);
       setLoginError("");
       tokenResponse = await loginUser({
-        username,
-        password,
+        username: username,
+        password: password,
       });
 
-      if (tokenResponse.token) {
-        setToken(tokenResponse.token);
+      console.log("Login response:", tokenResponse); // Log the response
+
+      if (tokenResponse.acces_token) {
+        setToken(tokenResponse.acces_token);
         setUserName(username);
         setIsLoggedIn(true);
         setSuccessMessage("Successfully logged in!");
-        localStorage.setItem("token", tokenResponse.token);
+        localStorage.setItem("token", tokenResponse.acces_token);
         localStorage.setItem("username", username);
         setTimeout(() => {
           navigate("/");
         }, 3000);
       } else {
         setLoginError("Invalid username or password");
-        console.error("Login failed:", tokenResponse.error);
+        console.error("Login failed:", tokenResponse.detail);
       }
     } catch (error) {
       setLoginError("An error occurred during login");
@@ -83,18 +102,23 @@ const AuthenticationPage = ({ setToken }) => {
     try {
       setLoading(true);
       setLoginError("");
-      tokenResponse = await registerUser({
-        username,
-        password,
+      const userResponse = await registerUser({
+        email: username,
+        password: password,
+        name: name,
+        surname: surname,
+        phone_number: telephone,
       });
 
-      if (tokenResponse.token) {
+      // Check if registration was successful based on server response
+      if (userResponse && userResponse.id) {
         // Registration successful, automatically log in the user
         setSuccessMessage("Successfully registered and logged in!");
         handleLoginSubmit(e);
       } else {
+        // Registration failed
         setLoginError("Registration failed");
-        console.error("Registration failed:", tokenResponse.error);
+        console.error("Registration failed:", userResponse);
       }
     } catch (error) {
       setLoginError("An error occurred during registration");
@@ -167,6 +191,21 @@ const AuthenticationPage = ({ setToken }) => {
               <input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <label>
+              <p>Name</p>
+              <input type="text" onChange={(e) => setName(e.target.value)} />
+            </label>
+            <label>
+              <p>Surname</p>
+              <input type="text" onChange={(e) => setSurname(e.target.value)} />
+            </label>
+            <label>
+              <p>Telephone</p>
+              <input
+                type="tel"
+                onChange={(e) => setTelephone(e.target.value)}
               />
             </label>
             <div>

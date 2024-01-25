@@ -82,6 +82,7 @@ class ProductAdd(BaseModel):
     description : str
     price: float
     stock: int
+    img: Optional[str]
     stars: int
 
     class Config:

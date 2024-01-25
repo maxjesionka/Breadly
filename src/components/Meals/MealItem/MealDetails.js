@@ -11,7 +11,7 @@ const MealDetails = ({ token }) => {
     const fetchMealDetails = async () => {
       try {
         const response = await fetch(
-          `https://react-http-cfd1b-default-rtdb.europe-west1.firebasedatabase.app/meals/${id}.json`
+          `http://localhost:8000/products/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch meal details");
@@ -31,7 +31,7 @@ const MealDetails = ({ token }) => {
     return <p>Loading...</p>;
   }
 
-  const { name, img, price, longDescription, description } = mealDetails;
+  const { name, img, price, short_description, description } = mealDetails;
 
   // Decode the JWT token to get user information
   const decodedToken = token ? jwtDecode(token) : null;
@@ -40,12 +40,12 @@ const MealDetails = ({ token }) => {
   return (
     <div className={classes.mealWrap}>
       <div className={classes.meal}>
-        <div className={classes.mealContainer}>
+        <div>
           <h2>{name}</h2>
           {token && <p>logged in</p>}
           {isAdmin && <p>You are an admin</p>}
           <p>Cena: {price}</p>
-          <p>Opis: {longDescription ? longDescription : description}</p>
+          <p>Opis: {description ? description : short_description}</p>
         </div>
         <div className={classes.mealContainer}>
           {img && (

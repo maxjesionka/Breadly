@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const MealItem = (props) => {
   const cartCtx = useContext(CartContext);
+  console.log(`MealItem ID: ${props.id}`); // Log the ID value
 
   const price = `$${props.price.toFixed(2)}`;
 
@@ -23,7 +24,7 @@ const MealItem = (props) => {
     <li className={classes.meal}>
       <div>
         <Link to={`/meals/${props.id}`} className={classes.productLink}>{props.name}</Link>
-        <div className={classes.description}>{props.description}</div>
+        <div className={classes.description}>{props.short_description}</div>
         <div className={classes.price}>{price}</div>
       </div>
       <div>

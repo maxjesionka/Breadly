@@ -1,49 +1,55 @@
 .mealWrap {
-    max-width: 60rem;
-    width: 90%;
-    margin: 8rem auto 2rem;
-    animation: meals-appear 1s ease-out forwards;
-  }
-  
-  .meal{
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 14px;
-    background-color: white;
-    display: flex;
-    gap:25px;
-    justify-content: space-between;
-  }
-
-  .mealContainer img{
-    border-radius: 14px;
-  }
-
-  .backBtn{
-    cursor: pointer;
-    font: inherit;
-    border: none;
-    background-color: #f7c873;
-    color: white;
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 25px;
-    font-weight: bold;
-    float: right;
-    margin-top: 10px;
-  }
-
-.backBtn:hover{
-  background-color: rgb(247, 190, 84);;
+  max-width: 60rem;
+  width: 90%;
+  margin: 8rem auto 2rem;
+  animation: meals-appear 1s ease-out forwards;
 }
 
-  .backBtn a{
-    text-decoration: none;
-    color: white;
-  }
+.meal {
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  background-color: white;
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+}
 
-  .productImg{
-    object-fit: cover;
-  }
+.mealContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.mealContainer img {
+  border-radius: 14px;
+}
+
+.backBtn {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: #f7c873;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+  float: right;
+  margin-top: 10px;
+}
+
+.backBtn:hover {
+  background-color: rgb(247, 190, 84);
+}
+
+.backBtn a {
+  text-decoration: none;
+  color: white;
+}
+
+.productImg {
+  object-fit: cover;
+}

@@ -14,7 +14,8 @@ const AvailableMeals = () => {
 
   useEffect(() => {
     const fetchMeals = async () => {
-      const response = await fetch('https://react-http-cfd1b-default-rtdb.europe-west1.firebasedatabase.app/meals.json');
+      // const response = await fetch('https://react-http-cfd1b-default-rtdb.europe-west1.firebasedatabase.app/meals.json');
+      const response = await fetch('http://localhost:8000/products/');
 
       if(!response.ok){
         throw new Error('Something went wrong')
@@ -28,8 +29,9 @@ const AvailableMeals = () => {
       for(const key in responseData){
         loadedMeals.push({
           id: key,
+          productId: responseData[key].id,
           name: responseData[key].name,
-          description: responseData[key].description,
+          short_description: responseData[key].short_description,
           price: responseData[key].price,
         });
       }
@@ -64,14 +66,13 @@ const AvailableMeals = () => {
   const mealsList = meals.map((meal) => (
   
     <li key={meal.id}>
-      {/* <Link to={`/meals/${meal.id}`}> */}
         <MealItem
-          id={meal.id}
+          id={meal.productId}
           name={meal.name}
-          description={meal.description}
+          short_description={meal.short_description}
           price={meal.price}
         />
-      {/* </Link> */}
+  
     </li>
   ));
 
