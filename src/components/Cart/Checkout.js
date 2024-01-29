@@ -1,96 +1,49 @@
-import { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Checkout.module.css";
 
-const isEmpty = (value) => value.trim() === "";
-const isFiveChars = (value) => value.trim().length === 5;
-
 const Checkout = (props) => {
+  const [userData, setUserData] = useState({}); // State to hold user data
 
- const [formInputsValidity, setFormInputsValidity] = useState({
-  name: true,
-  street: true,
-  city: true,
-  postalCode: true
- })
+  useEffect(() => {
+    const existingUserId = localStorage.getItem("existingUserId");
 
-  const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postalInputRef = useRef();
-  const cityInputRef = useRef();
+    // Fetch user data based on the existingUserId
+    fetch("http://localhost:8000/users/" + existingUserId)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then(data => {
+        setUserData(data); // Set fetched user data to the state
+      })
+      .catch(error => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  }, []); // Empty dependency array to run the effect only once
+
+  // Destructure user data from state
+  const { email = '', name = '', surname = '', phone_number = '' } = userData;
 
   const confirmHandler = (event) => {
     event.preventDefault();
-
-    const enteredName = nameInputRef.current.value;
-    const enteredStreet = streetInputRef.current.value;
-    const enteredPostalCode = postalInputRef.current.value;
-    const enteredCity = cityInputRef.current.value;
-
-    const enteredNameIsValid = !isEmpty(enteredName);
-    const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
-    const enteredCityIsValid = !isEmpty(enteredCity);
-
-    setFormInputsValidity({
-      name: enteredCityIsValid,
-      street: enteredStreetIsValid,
-      city: enteredCityIsValid,
-      postalCode: enteredPostalCodeIsValid
-    })
-
-    const formIsValid =
-      enteredNameIsValid &&
-      enteredStreetIsValid &&
-      enteredPostalCodeIsValid &&
-      enteredCityIsValid;
-
-    if (!formIsValid) {
-      return;
-    }
-
-    props.onConfirm({
-      name: enteredName,
-      street: enteredStreet,
-      postalCode: enteredPostalCode,
-      city: enteredCity
-    })
+    // Call the onConfirm function with user data
+    props.onConfirm(userData);
   };
 
-
-  const nameControlClasses = `${classes.control} ${formInputsValidity.name ? '' : classes.invalid}`;
-  const streetControlClasses = `${classes.control} ${formInputsValidity.street ? '' : classes.invalid}`;
-  const postalCodeControlClasses = `${classes.control} ${formInputsValidity.postalCode ? '' : classes.invalid}`;
-  const cityControlClasses = `${classes.control} ${formInputsValidity.city ? '' : classes.invalid}`;
-  
   return (
-    <form className={classes.form} onSubmit={confirmHandler}>
-      <div className={nameControlClasses}>
-        <label htmlFor="name">Your Name</label>
-        <input type="text" id="name" ref={nameInputRef} />
-        {!formInputsValidity.name && <p>Please enter a valid name!</p>}
-      </div>
-      <div className={streetControlClasses}>
-        <label htmlFor="street">Street</label>
-        <input type="text" id="street" ref={streetInputRef} />
-        {!formInputsValidity.street && <p>Please enter a valid street!</p>}
-      </div>
-      <div className={postalCodeControlClasses}>
-        <label htmlFor="postal">Postal Code</label>
-        <input type="text" id="postal" ref={postalInputRef} />
-        {!formInputsValidity.postalCode && <p>Please enter a valid postal code!(5 characters)</p>}
-      </div>
-      <div className={cityControlClasses}>
-        <label htmlFor="city">City</label>
-        <input type="text" id="city" ref={cityInputRef} />
-        {!formInputsValidity.city && <p>Please enter a valid city!</p>}
-      </div>
+    <div>
+      <p>Please confirm your order details:</p>
+      <p>Email: {email}</p>
+      <p>Name: {name}</p>
+      <p>Surname: {surname}</p>
+      <p>Phone Number: {phone_number}</p>
       <div className={classes.actions}>
-        <button type="button" onClick={props.onCancel}>
-          Cancel
-        </button>
-        <button className={classes.submit}>Confirm</button>
+        <button onClick={props.onCancel}>Cancel</button>
+        <button className={classes.submit} onClick={confirmHandler}>Confirm</button>
       </div>
-    </form>
+    </div>
   );
 };
 

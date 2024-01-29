@@ -39,6 +39,7 @@ async function registerUser(credentials) {
 const AuthenticationPage = ({ setToken }) => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState('')
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [telephone, setTelephone] = useState("");
@@ -58,10 +59,11 @@ const AuthenticationPage = ({ setToken }) => {
       setUserName(existingUsername);
       setIsLoggedIn(true);
       const decodedToken = jwtDecode(existingToken);
-      const userId = decodedToken.user_id;
+      setUserId(decodedToken.user_id);
+      localStorage.setItem("currentUserId", decodedToken.user_id);
       console.log("User ID:", userId);
     }
-  }, [setToken]);
+  }, [setToken, userId]);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();

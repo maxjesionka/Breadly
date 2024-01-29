@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
@@ -27,21 +26,41 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
-  const submitOrderHandler = async (userData) => {
+  const submitOrderHandler = async () => {
     setIsCheckout(true);
-    await fetch(
-      "https://react-http-cfd1b-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          user: userData,
-          orderedItems: cartCtx.items,
-        }),
+    try {
+      const authToken = props.token; // Retrieve token from props
+
+      // Check if the token exists
+      if (!authToken) {
+        // Handle the case where the token is missing
+        throw new Error("Authentication token not found");
       }
-    );
-    setIsSubmitting(false);
-    setDidSubmit(true);
-    cartCtx.clearCart();
+      const response = await fetch("http://localhost:8000/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+          // Add user_id if required by the backend
+          user_id: 3,
+          details: cartCtx.items.map(item => ({
+            product_id: item.id,
+            quantity: item.amount,
+            total_price: item.amount * item.price
+          }))
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Order submission failed");
+      }
+      setIsSubmitting(false);
+      setDidSubmit(true);
+      cartCtx.clearCart();
+    } catch (error) {
+      console.error("Error submitting order:", error.message);
+    }
   };
 
   const cartItems = (

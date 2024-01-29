@@ -8,6 +8,7 @@ import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
 import Header from "./components/Layout/Header";
 import AuthenticationPage from "./components/pages/AuthenticationPage";
+import Checkout from "./components/Cart/Checkout";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -21,16 +22,14 @@ function App() {
   };
 
   const [token, setToken] = useState();
+  const [userData, setUserData] = useState({}); // State variable to store user data
 
-  // if(!token){
-  //   console.log('no token, log in')
-  //   return <AuthenticationPage setToken={setToken}/>
-  // }
+  console.log('app token ' + token)
 
   return (
     <Router>
       <CartProvider>
-        {cartIsShown && <Cart onClose={hideCartHandler} />}
+        {cartIsShown && <Cart onClose={hideCartHandler} token={token}><Checkout userData={userData}/></Cart>}
         <Header onShowCart={showCartHandler} />
         <Routes>
           <Route
@@ -42,9 +41,10 @@ function App() {
               </>
             }
           />
-          <Route path="auth" element={<AuthenticationPage setToken={setToken}/>} />
+          <Route path="auth" element={<AuthenticationPage setToken={setToken} setUserData={setUserData}/>} />
           {/* <Route path="meals" element={<MealInsights />} /> */}
           <Route path="meals/:id" element={<MealDetails token={token}/>} />
+          
         </Routes>
       </CartProvider>
     </Router>
