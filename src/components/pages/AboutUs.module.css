@@ -1,0 +1,25 @@
+.container {
+  /* text-align: center; */
+  max-width: 60rem;
+  width: 90%;
+  margin: auto;
+  margin-top: 120px;
+  position: relative;
+  background-color: #b2533e;
+  color: white;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+}
+.flexDiv {
+  /* padding: 1rem; */
+  display: flex;
+}
+.flexDiv div {
+  width: 50%;
+  padding: 1rem;
+}
+
+.textDiv {
+  padding: 1rem;
+}

@@ -16,7 +16,7 @@
     box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
   }
 
-  .form button {
+  .formAuth button {
     font: inherit;
     cursor: pointer;
     background-color: #8a2b06;
@@ -28,12 +28,12 @@
     margin-top: 10px;
   }
   
-  .form button:hover,
-  .form button:active {
+  .formAuth button:hover,
+  .formAuth button:active {
     background-color: #641e03;
     border-color: #641e03;
   }
 
-  form label p{
+  formAuth label p{
     margin-bottom: .5em;
   }

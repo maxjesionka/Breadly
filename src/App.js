@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 
 import RootLayout from "./components/pages/RootLayout";
-import MealInsights from "./components/Meals/MealItem/MealInsights";
 import MealDetails from "./components/Meals/MealItem/MealDetails";
 import Cart from "./components/Cart/Cart";
 import CartProvider from "./store/CartProvider";
 import Header from "./components/Layout/Header";
 import AuthenticationPage from "./components/pages/AuthenticationPage";
 import Checkout from "./components/Cart/Checkout";
+import AboutUs from "./components/pages/AboutUs";
+import Recipes from "./components/pages/Recipes";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -44,6 +45,8 @@ function App() {
           <Route path="auth" element={<AuthenticationPage setToken={setToken} setUserData={setUserData}/>} />
           {/* <Route path="meals" element={<MealInsights />} /> */}
           <Route path="meals/:id" element={<MealDetails token={token}/>} />
+          <Route path="about-us" element={<AboutUs/>}/>
+          <Route path="recipes" element={<Recipes/>}/>
           
         </Routes>
       </CartProvider>
