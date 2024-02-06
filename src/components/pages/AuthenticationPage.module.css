@@ -34,6 +34,20 @@
     border-color: #641e03;
   }
 
-  formAuth label p{
+  .formAuth label p{
     margin-bottom: .5em;
   }
+
+  .formAuth input{
+    padding: 4px 8px;
+    border-radius: 25px;
+    border-width: 1px;
+  }
+  
+  .formAuth textarea{
+    padding: 8px;
+    border-radius: 20px;
+    border-width: 1px;
+  }
+
+ 

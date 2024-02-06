@@ -11,7 +11,7 @@ const MealsSummary = () => {
       </p>
       <p>
         All our products are baked with high-quality ingredients, just-in-time and
-        of course by experienced chefs!
+        of course by experienced bakers!
       </p>
     </section>
   );

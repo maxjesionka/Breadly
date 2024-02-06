@@ -75,8 +75,6 @@ const AuthenticationPage = ({ setToken }) => {
         password: password,
       });
 
-      console.log("Login response:", tokenResponse); // Log the response
-
       if (tokenResponse.acces_token) {
         setToken(tokenResponse.acces_token);
         setUserName(username);
@@ -84,9 +82,15 @@ const AuthenticationPage = ({ setToken }) => {
         setSuccessMessage("Successfully logged in!");
         localStorage.setItem("token", tokenResponse.acces_token);
         localStorage.setItem("username", username);
+        const decodedToken = jwtDecode(tokenResponse.acces_token);
+        localStorage.setItem("currentUserId", decodedToken.user_id);
+        if ( tokenResponse.isAdmin || username === "mj16@gmail.com"  ) { 
+          // console.log('admin is here');
+          localStorage.setItem("isAdmin", "true");
+        }
         setTimeout(() => {
           navigate("/");
-        }, 3000);
+        }, 2000);
       } else {
         setLoginError("Invalid username or password");
         console.error("Login failed:", tokenResponse.detail);
@@ -114,7 +118,7 @@ const AuthenticationPage = ({ setToken }) => {
 
       // Check if registration was successful based on server response
       if (userResponse && userResponse.id) {
-        // Registration successful, automatically log in the user
+        // Registration successful
         setSuccessMessage("Successfully registered and logged in!");
         handleLoginSubmit(e);
       } else {
@@ -129,13 +133,15 @@ const AuthenticationPage = ({ setToken }) => {
       setLoading(false);
     }
   };
-
+  // Delete all user tokens
   const handleLogout = () => {
     setIsLoggedIn(false);
     setToken(null);
     setUserName("");
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    localStorage.removeItem('isAdmin')
+    localStorage.removeItem('currentUserId')
   };
 
   return (
@@ -182,14 +188,14 @@ const AuthenticationPage = ({ setToken }) => {
           <h2>Create new account</h2>
           <form onSubmit={handleRegistrationSubmit} className={classes.form}>
             <label>
-              <p>New Username</p>
+              <p>Email</p>
               <input
                 type="text"
                 onChange={(e) => setUserName(e.target.value)}
               />
             </label>
             <label>
-              <p>New Password</p>
+              <p>Password</p>
               <input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}

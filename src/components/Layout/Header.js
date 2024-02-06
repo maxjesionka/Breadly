@@ -11,7 +11,7 @@ const Header = (props) => {
         <h1>
           <Link to="/" className={classes.pageName}>Breadly</Link>
         </h1>
-        <MainNavigation/>
+        <MainNavigation isAdmin={props.isAdmin} />
         <HeaderCartButton onClick={props.onShowCart} />
       </header>
     </>

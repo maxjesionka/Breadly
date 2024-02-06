@@ -1,0 +1,50 @@
+.container {
+  /* text-align: center; */
+  max-width: 60rem;
+  width: 90%;
+  margin: auto;
+  margin-top: 120px;
+  position: relative;
+  background-color: #b2533e;
+  color: white;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+}
+
+ul.listUl {
+  padding-left: 0;
+}
+
+.listUl li {
+  list-style: none;
+  padding: 5px 20px;
+  margin: 15px 0;
+  background-color: #c6705d;
+  /* color: #131b25; */
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+.listUl li p {
+  margin: 0.5em 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.mb_0{
+    margin-bottom: 0;
+}
+
+ input{
+    margin-top: 5px;
+    padding: 4px 8px;
+    border-radius: 25px;
+    border-width: 1px;
+  }
+
+  .textCenter{
+    text-align: center;
+  }

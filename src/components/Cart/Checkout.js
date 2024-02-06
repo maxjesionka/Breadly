@@ -5,7 +5,7 @@ const Checkout = (props) => {
   const [userData, setUserData] = useState({}); // State to hold user data
 
   useEffect(() => {
-    const existingUserId = localStorage.getItem("existingUserId");
+    const existingUserId = localStorage.getItem("currentUserId");
 
     // Fetch user data based on the existingUserId
     fetch("http://localhost:8000/users/" + existingUserId)
@@ -34,11 +34,11 @@ const Checkout = (props) => {
 
   return (
     <div>
-      <p>Please confirm your order details:</p>
+      <p>Potwierdź proszę swoje dane:</p>
       <p>Email: {email}</p>
-      <p>Name: {name}</p>
-      <p>Surname: {surname}</p>
-      <p>Phone Number: {phone_number}</p>
+      <p>Imie: {name}</p>
+      <p>Nazwisko: {surname}</p>
+      <p>Numer telefonu: {phone_number}</p>
       <div className={classes.actions}>
         <button onClick={props.onCancel}>Cancel</button>
         <button className={classes.submit} onClick={confirmHandler}>Confirm</button>

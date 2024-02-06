@@ -10,6 +10,7 @@ import AuthenticationPage from "./components/pages/AuthenticationPage";
 import Checkout from "./components/Cart/Checkout";
 import AboutUs from "./components/pages/AboutUs";
 import Recipes from "./components/pages/Recipes";
+import Orders from "./components/pages/Orders";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -47,7 +48,7 @@ function App() {
           <Route path="meals/:id" element={<MealDetails token={token}/>} />
           <Route path="about-us" element={<AboutUs/>}/>
           <Route path="recipes" element={<Recipes/>}/>
-          
+          <Route path="orders" element={<Orders/>}/>
         </Routes>
       </CartProvider>
     </Router>

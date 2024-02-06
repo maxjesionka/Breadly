@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import classes from './MainNavigation.module.css'
 
 const MainNavigation = () => {
+
+    const isAdminFromLocalStorage = localStorage.getItem("isAdmin") === "true";
     return(
         <nav>
             <ul className={classes.navigation}>
@@ -25,6 +27,13 @@ const MainNavigation = () => {
                         Recipes
                     </NavLink>
                 </li>
+                {isAdminFromLocalStorage && (
+                  <li>
+                    <NavLink to='/orders'>
+                        Zamówienia
+                    </NavLink>
+                  </li>
+                )}
             </ul>
         </nav>
     )
