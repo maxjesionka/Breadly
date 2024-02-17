@@ -149,33 +149,33 @@ const AuthenticationPage = ({ setToken }) => {
       <div className={classes.formAuth}>
         {isLoggedIn ? (
           <div>
-            <p>Welcome, {username}!</p>
+            <p>Witaj, {username}!</p>
             <button onClick={handleLogout}>Logout</button>
           </div>
         ) : (
           <div>
-            <h2>Log in</h2>
+            <h2>Zaloguj się</h2>
             <form onSubmit={handleLoginSubmit} className={classes.form}>
               <label>
-                <p>Username</p>
+                <p>Nazwa użytkownika</p>
                 <input
                   type="text"
                   onChange={(e) => setUserName(e.target.value)}
                 />
               </label>
               <label>
-                <p>Password</p>
+                <p>Hasło</p>
                 <input
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
               <div>
-                <button type="submit">Login</button>
+                <button type="submit">Zaloguj się</button>
               </div>
             </form>
 
-            {loading && <p>Loading...</p>}
+            {loading && <p>Ładowanie...</p>}
             {loginError && <p style={{ color: "red" }}>{loginError}</p>}
             {successMessage && (
               <p style={{ color: "green" }}>{successMessage}</p>
@@ -185,7 +185,7 @@ const AuthenticationPage = ({ setToken }) => {
       </div>
       {!isLoggedIn && (
         <div className={classes.formAuth}>
-          <h2>Create new account</h2>
+          <h2>Stwórz nowego użytkownika</h2>
           <form onSubmit={handleRegistrationSubmit} className={classes.form}>
             <label>
               <p>Email</p>
@@ -195,29 +195,29 @@ const AuthenticationPage = ({ setToken }) => {
               />
             </label>
             <label>
-              <p>Password</p>
+              <p>Hasło</p>
               <input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </label>
             <label>
-              <p>Name</p>
+              <p>Imię</p>
               <input type="text" onChange={(e) => setName(e.target.value)} />
             </label>
             <label>
-              <p>Surname</p>
+              <p>Nazwisko</p>
               <input type="text" onChange={(e) => setSurname(e.target.value)} />
             </label>
             <label>
-              <p>Telephone</p>
+              <p>Telefon</p>
               <input
                 type="tel"
                 onChange={(e) => setTelephone(e.target.value)}
               />
             </label>
             <div>
-              <button type="submit">Register</button>
+              <button type="submit">Zarejestruj się</button>
             </div>
           </form>
         </div>

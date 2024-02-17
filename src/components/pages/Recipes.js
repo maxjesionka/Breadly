@@ -16,7 +16,7 @@ const Recipes = () => {
           setIndex(expanded ? 0 : null);
         }}
       >
-        <AccordionSummary className={classes.accordionHead}>Recipe 1</AccordionSummary>
+        <AccordionSummary className={classes.accordionHead}>Przepis 1</AccordionSummary>
         <AccordionDetails>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -36,7 +36,7 @@ const Recipes = () => {
           setIndex(expanded ? 1 : null);
         }}
       >
-        <AccordionSummary className={classes.accordionHead}>Recipe 2</AccordionSummary>
+        <AccordionSummary className={classes.accordionHead}>Przepis 2</AccordionSummary>
         <AccordionDetails>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -49,7 +49,7 @@ const Recipes = () => {
           setIndex(expanded ? 2 : null);
         }}
       >
-        <AccordionSummary className={classes.accordionHead}>Recipe 3</AccordionSummary>
+        <AccordionSummary className={classes.accordionHead}>Przepis 3</AccordionSummary>
         <AccordionDetails>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -69,7 +69,7 @@ const Recipes = () => {
           setIndex(expanded ? 3 : null);
         }}
       >
-        <AccordionSummary className={classes.accordionHead}>Recipe 4</AccordionSummary>
+        <AccordionSummary className={classes.accordionHead}>Przepis 4</AccordionSummary>
         <AccordionDetails>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.

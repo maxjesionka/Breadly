@@ -115,7 +115,7 @@ const MealDetails = ({ token }) => {
           </button>
           {isAdmin && !isEditing && (
             <button className={classes.buttonEdit} onClick={handleEditClick}>
-              Edit
+              Edytuj
             </button>
           )}
           </div>
@@ -149,7 +149,7 @@ const MealDetails = ({ token }) => {
                 value={formData.description}
                 onChange={handleFormChange}
               ></textarea>
-              <button type="submit">Save</button>
+              <button type="submit">Zapisz</button>
             </form>
           )}
       </div>

@@ -40,8 +40,8 @@ const Checkout = (props) => {
       <p>Nazwisko: {surname}</p>
       <p>Numer telefonu: {phone_number}</p>
       <div className={classes.actions}>
-        <button onClick={props.onCancel}>Cancel</button>
-        <button className={classes.submit} onClick={confirmHandler}>Confirm</button>
+        <button onClick={props.onCancel}>Anuluj</button>
+        <button className={classes.submit} onClick={confirmHandler}>Potwierdź</button>
       </div>
     </div>
   );

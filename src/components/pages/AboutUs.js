@@ -5,7 +5,7 @@ const AboutUs = () => {
     <div className={classes.container}>
       <div className={classes.flexDiv}>
         <div>
-          <h2>About us</h2>
+          <h2>O nas</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

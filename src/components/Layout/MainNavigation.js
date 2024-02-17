@@ -9,22 +9,22 @@ const MainNavigation = () => {
             <ul className={classes.navigation}>
                 <li>
                     <NavLink to='/'>
-                        Home
+                        Strona główna
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to='/auth'>
-                        Account
+                        Konto
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to='/about-us'>
-                        About us
+                        O nas
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to='/recipes'>
-                        Recipes
+                        Przepisy
                     </NavLink>
                 </li>
                 {isAdminFromLocalStorage && (

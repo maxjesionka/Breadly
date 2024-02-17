@@ -10,7 +10,6 @@ const AvailableMeals = () => {
 
   useEffect(() => {
     const fetchMeals = async () => {
-      // const response = await fetch('https://react-http-cfd1b-default-rtdb.europe-west1.firebasedatabase.app/meals.json');
       const response = await fetch("http://localhost:8000/products/");
 
       if (!response.ok) {
@@ -18,7 +17,6 @@ const AvailableMeals = () => {
       }
 
       const responseData = await response.json();
-
       const loadedMeals = [];
 
       for (const key in responseData) {
@@ -44,7 +42,7 @@ const AvailableMeals = () => {
   if (isLoading) {
     return (
       <section className={classes.MealsLoading}>
-        <p>Loading..</p>
+        <p>Ładowanie..</p>
       </section>
     );
   }
