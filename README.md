@@ -4,6 +4,6 @@ aby uruchomić aplikacje należy pobrać pliki a następnie wpisać w konsoli
 
 npm install
 &
-npm run
+npm start
 
 udanej zabawy!
